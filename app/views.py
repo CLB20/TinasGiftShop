@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from datetime import date
 import random
 from app.db import db, Product, Order_item, Order, Message
-import stripe
+# import stripe
 
 
 @app.route("/")
@@ -214,19 +214,20 @@ def create_checkout_session():
     db.session.commit()
     session["order_id"] = order_id
     print(session["order_id"])
-    try:
-        checkout_session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    'price': 'price_1Kz0WYJkVDjhXN66qaHtaQHs',
-                    'quantity': 1,
-                },
-            ],
-            mode='payment',
-            success_url=url_for("pay_confirmation", _external=True) + '?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url=url_for("home", _external=True),
-        )
-    except Exception as e:
-        print(str(e))
-        return render_template("404.html"), 404
-    return redirect(checkout_session.url, code=303)
+    # try:
+    #     checkout_session = stripe.checkout.Session.create(
+    #         line_items=[
+    #             {
+    #                 'price': 'price_1Kz0WYJkVDjhXN66qaHtaQHs',
+    #                 'quantity': 1,
+    #             },
+    #         ],
+    #         mode='payment',
+    #         success_url=url_for("pay_confirmation", _external=True) + '?session_id={CHECKOUT_SESSION_ID}',
+    #         cancel_url=url_for("home", _external=True),
+    #     )
+    # except Exception as e:
+    #     print(str(e))
+    #     return render_template("404.html"), 404
+    # return redirect(checkout_session.url, code=303)
+    return redirect(url_for('home'))
