@@ -31,4 +31,4 @@ WTForms = {version = "==2.3.3", extras = ["email"]}
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.6.5"
