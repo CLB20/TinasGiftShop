@@ -1,0 +1,172 @@
+{% include "header.html" %}
+
+<!-- Photos by:
+	Annie Spratt on https://unsplash.com/s/photos/gifts?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+	Joy Memon on https://unsplash.com/s/photos/anniversary?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+	-->
+
+<div class="hero-slider">
+  <div class="slider-item th-fullpage hero-area" style="background-image: url('{{ url_for('static', filename='images/slider/slider-1.jpg') }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 text-center">
+          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">Only at Tina's</p>
+          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Find the perfect gift <br> for that someone special.</h1>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{{ url_for('shop', category='balloons') }}">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slider-item th-fullpage hero-area" style="background-image: url('{{ url_for('static', filename='images/slider/slider-2.jpg') }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 text-left">
+          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">Let us help you</p>
+          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Make any occasion <br> a special one.</h1>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{{ url_for('shop', category='balloons') }}">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slider-item th-fullpage hero-area" style="background-image: url('{{ url_for('static', filename='images/slider/slider-3.jpg') }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 text-right">
+          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">❤</p>
+          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">We celebrate <br> LOVE.</h1>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{{ url_for('shop', category='signs') }}">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="product-category section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title text-center">
+					<h2>Explore our products</h2>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="category-box">
+					<a href="{{ url_for('shop', category='mugs_glasses') }}">
+						<img src="{{ url_for('static', filename='images/shop/category/category-1.jpg') }}" alt="" />
+						<div class="content">
+							<h3>Mugs and Glasses</h3>
+						</div>
+					</a>	
+				</div>
+				<div class="category-box">
+					<a href="{{ url_for('shop', category='cake_toppers') }}">
+						<img src="{{ url_for('static', filename='images/shop/category/category-2.jpg') }}" alt="" />
+						<div class="content text-right">
+							<h3>Cake Toppers</h3>
+						</div>
+					</a>	
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="category-box category-box-2">
+					<a href="{{ url_for('shop', category='balloons') }}">
+						<img src="{{ url_for('static', filename='images/shop/category/category-3.jpg') }}" alt="" />
+						<div class="content">
+							<h3>Balloons</h3>
+						</div>
+					</a>	
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="products section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="title text-center">
+				<h2>Trendy Products</h2>
+			</div>
+		</div>
+		<div class="row">
+			{% for product in sample_products %}
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="{{ url_for('static', filename='images/shop/products/'+product.image_name) }}" alt="product-img"/>
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span  data-toggle="modal" data-target="#product-modal{{ product.id }}">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="{{ url_for('single_product', p_id=product.id) }}"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+                      	</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="product-single.html">{{ product.name }}</a></h4>
+						<p class="price">${{ product.price }}</p>
+					</div>
+				</div>
+			</div>
+					<!-- Modal -->
+		<div class="modal product-modal fade" id="product-modal{{ product.id }}">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<i class="tf-ion-close"></i>
+			</button>
+		  	<div class="modal-dialog " role="document">
+		    	<div class="modal-content">
+			      	<div class="modal-body">
+			        	<div class="row">
+			        		<div class="col-md-8 col-sm-6 col-xs-12">
+			        			<div class="modal-image">
+				        			<img class="img-responsive" src="{{ url_for('static', filename='images/shop/products/'+product.image_name) }}" alt="product-img" />
+			        			</div>
+			        		</div>
+			        		<div class="col-md-4 col-sm-6 col-xs-12">
+			        			<div class="product-short-details">
+			        				<h2 class="product-title">{{ product.name }}</h2>
+			        				<p class="product-price">${{ product.price }}</p>
+			        				<p class="product-short-description">
+			        					{{ product.description }}
+			        				</p>
+			        				<a href="{{ url_for('single_product', p_id=product.id) }}" class="btn btn-main">Add To Cart</a>
+			        			</div>
+			        		</div>
+			        	</div>
+			        </div>
+		    	</div>
+		  	</div>
+		</div><!-- /.modal -->
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!--
+Start Call To Action
+==================================== -->
+
+
+<section class="section instagram-feed">
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<h2>View us on instagram</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="instagram-slider" id="instafeed" data-accessToken="IGQVJYeUk4YWNIY1h4OWZANeS1wRHZARdjJ5QmdueXN2RFR6NF9iYUtfcGp1NmpxZA3RTbnU1MXpDNVBHTzZAMOFlxcGlkVHBKdjhqSnUybERhNWdQSE5hVmtXT013MEhOQVJJRGJBRURn"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% include "footer.html" %}

@@ -1,0 +1,77 @@
+{% include "header.html" %}
+
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">About Us</h1>
+					<ol class="breadcrumb">
+						<li><a href="{{ url_for('home') }}">Home</a></li>
+						<li class="active">about us</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="about section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive" src="{{ url_for('static', filename='images/about/about.jpg') }}">
+			</div>
+			<div class="col-md-6">
+				<h2 class="mt-40">About Our Shop</h2>
+				<p>We love to make people feel as special as they are. We want to fight against impersonal and generic gifts. We want you and your loved ones to feel special on a special day... or any other day of the year.</p>
+				<p>Every gift is handmade and carefully inspected so it meets the quality standards.</p>
+				<p>Feel free to contact us if you have an amazing idea that you can't find on our website, we make <strong>personalized</strong> gifts after all. </p>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="team-members ">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="team-member text-center">
+					<img class="img-circle" src="{{ url_for('static', filename='images/about/about1.jpg') }}" height="200" width="200">
+					<h4>2020</h4>
+					<p>Founded In</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="team-member text-center">
+					<img class="img-circle" src="{{ url_for('static', filename='images/about/about2.jpg') }}" height="200" width="200">
+					<h4>Winnipeg, Canada</h4>
+					<p>Located In</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="team-member text-center">
+					<img class="img-circle" src="{{ url_for('static', filename='images/about/about3.jpg') }}" height="200" width="200">
+					<h4>Love</h4>
+					<p>Inspired By</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<div class="section video-testimonial overly-white text-center mt-50">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<video width="620" height="440" controls>
+					<source src="{{ url_for('static', filename='images/about/video.mp4') }}" type="video/mp4">
+				</video>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% include "footer.html" %}

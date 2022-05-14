@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="152.21349mm"
+   height="86.070236mm"
+   viewBox="0 0 152.21349 86.070236"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="TinasLogo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.74118967"
+     inkscape:cx="190.9093"
+     inkscape:cy="284.00288"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-7"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2">
+    <rect
+       x="-5.3967295"
+       y="222.61508"
+       width="793.31921"
+       height="541.02209"
+       id="rect3224" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-22.562293,-73.360763)">
+    <g
+       id="g6330">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,36.054087,5.3545673)"
+         id="text3222"
+         style="font-style:normal;font-weight:normal;font-size:333.333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3224);fill:#895062;fill-opacity:1;stroke:none"><tspan
+           x="-5.3964844"
+           y="526.72504"
+           id="tspan856"><tspan
+             style="font-family:'Amsterdam Variation_1';-inkscape-font-specification:'Amsterdam Variation_1'"
+             id="tspan854">Tina's</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:24.7474px;line-height:1.25;font-family:sans-serif;fill:#895062;fill-opacity:1;stroke-width:0.257785"
+         x="71.777298"
+         y="158.78757"
+         id="text24838"><tspan
+           sodipodi:role="line"
+           id="tspan24836"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24.7474px;font-family:Alta;-inkscape-font-specification:Alta;fill:#895062;fill-opacity:1;stroke-width:0.257785"
+           x="71.777298"
+           y="158.78757">Gift Shop</tspan></text>
+    </g>
+  </g>
+</svg>

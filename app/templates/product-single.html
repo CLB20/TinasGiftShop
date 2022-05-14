@@ -1,0 +1,194 @@
+{% include "header.html" %}
+
+
+<section class="single-product">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<ol class="breadcrumb">
+					<li><a href="{{ url_for('home') }}">Home</a></li>
+					<li><a href="{{ url_for('shop', category=product.category) }}">Shop</a></li>
+					<li class="active">{{ product.name }}</li>
+				</ol>
+			</div>
+		</div>
+		<div class="row mt-20">
+			<div class="col-md-5">
+				<div class="single-product-slider">
+					<div class='carousel-inner '>
+						<div class='item active'>
+							<img src="{{ url_for('static', filename='images/shop/products/'+product.image_name) }}" alt='product image'/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<div class="single-product-details">
+					<h2>{{ product.name }}</h2>
+					<p class="product-price">${{ product.price }}</p>
+					
+					<p class="product-description mt-20">
+						{{ product.description }}
+					</p>
+					<p>You can customize you gift by selecting a personalized message, text color and more.</p>
+					<form name="form" class="text-left clearfix" action="{{ url_for('single_product', p_id=product.id) }}" method="post">
+					<div class="color-swatches">
+						<span>Text Color:</span>
+						<ul>
+							<li>
+								<input type="radio" name="text_color" id="white" value="white">
+								<label for="white">
+									<a href="#!" style="background-color: #fff; border: solid 0.8px black"></a>
+								</label>
+							</li>
+							<li>
+								<input type="radio" name="text_color" id="black" value="black" checked>
+								<label for="black">
+									<a href="#!" class="swatch-black"></a>
+								</label>
+							</li>
+							<li>
+								<input type="radio" name="text_color" id="golden" value="golden">
+								<label for="golden">
+									<a href="#!" style="background-color: #bc9928;"></a>
+								</label>
+							</li>
+						</ul>
+					</div>
+					<div class="product-quantity">
+						<span>Text:</span>
+					  <input name="text" type="text" class="form-control"  placeholder="Personalized Text" maxlength="25">
+					</div>
+						{% if product.category == "balloons" %}
+						<div class="product-quantity">
+							<span>Balloons:</span>
+							<ul>
+								<li><input type="color" name="balloons_color1" id="balloons_color1" value="#89CFF0"></li>
+								<li><input type="color" name="balloons_color2" id="balloons_color2" value="#FFFFFF"></li>
+							</ul>
+						</div>
+						<div><p>Choose the same color twice if you want all 6 balloons the same color</p></div>
+						{% endif %}
+					<div class="product-quantity">
+						<span>Quantity:</span>
+						<div class="product-quantity-slider">
+							<input id="product-quantity" type="number" value="1" name="product-quantity" min="1" max="{{ product.stock }}">
+						</div>
+					</div>
+					<div class="product-category">
+						<span>Category:</span>
+						<ul>
+							<li><p>{{ product.category }}</p></li>
+						</ul>
+					</div>
+					<button type="submit" class="btn btn-main mt-20">Add To Cart</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="tabCommon mt-20">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
+					</ul>
+					<div class="tab-content patternbg">
+						<div id="details" class="tab-pane fade active in">
+							<h4>Product Description</h4>
+							{% if product.category == "balloons" %}
+								<p>Our bubble balloon is the perfect gits for any occasion! You can personalize it by choosing the message and the color of the balloons inside.</p>
+								<ul>What's included?</ul>
+									<li>1 Clear bubble balloon (Size: 20" approx, filled with air)</li>
+									<li>6 Regular balloons inside</li>
+									<li>1 Label (max. 25 characters)</li>
+									<li>1 Stick (Plastic, white, 14" long)</li>
+									<li>1 Stand (Plastic, white, 3")</li>
+							{% elif product.category == "mugs_glasses" %}
+								<p>This is a perfect gift for a coffee/tea/wine/beer lover! </p>
+								<ul>What's included?</ul>
+									<li>1 Mug/Glass</li>
+									<li>1 Label (max. 15 characters)</li>
+							{% elif product.category == "signs" %}
+								<p>This is a perfect gift for anyone with a name!</p>
+								<ul>What's included?</ul>
+									<li>1 Wood Frame</li>
+									<li>Decoration (Availability may vary)</li>
+									<li>1 Label (max. 15 characters)</li>
+							{% endif %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="products section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="title text-center">
+				<h2>Trendy Products</h2>
+			</div>
+		</div>
+		<div class="row">
+			{% for product in sample_products %}
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="{{ url_for('static', filename='images/shop/products/'+product.image_name) }}" alt="product-img"/>
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span  data-toggle="modal" data-target="#product-modal{{ product.id }}">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="{{ url_for('single_product', p_id=product.id) }}"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+                      	</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="product-single.html">{{ product.name }}</a></h4>
+						<p class="price">${{ product.price }}</p>
+					</div>
+				</div>
+			</div>
+					<!-- Modal -->
+		<div class="modal product-modal fade" id="product-modal{{ product.id }}">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<i class="tf-ion-close"></i>
+			</button>
+		  	<div class="modal-dialog " role="document">
+		    	<div class="modal-content">
+			      	<div class="modal-body">
+			        	<div class="row">
+			        		<div class="col-md-8 col-sm-6 col-xs-12">
+			        			<div class="modal-image">
+				        			<img class="img-responsive" src="{{ url_for('static', filename='images/shop/products/'+product.image_name) }}" alt="product-img" />
+			        			</div>
+			        		</div>
+			        		<div class="col-md-4 col-sm-6 col-xs-12">
+			        			<div class="product-short-details">
+			        				<h2 class="product-title">{{ product.name }}</h2>
+			        				<p class="product-price">${{ product.price }}</p>
+			        				<p class="product-short-description">
+			        					{{ product.description }}
+			        				</p>
+			        				<a href="{{ url_for('single_product', p_id=product.id) }}" class="btn btn-main">Add To Cart</a>
+			        			</div>
+			        		</div>
+			        	</div>
+			        </div>
+		    	</div>
+		  	</div>
+		</div><!-- /.modal -->
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% include "footer.html" %}

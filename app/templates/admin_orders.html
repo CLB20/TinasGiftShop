@@ -1,0 +1,133 @@
+{% include "header-simple.html" %}
+
+<body id="body">
+
+<section class="signin-page account">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <a class="logo" href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/tinas_logo.png') }}" alt="Logo" height=100">
+          </a>
+          <h2 class="text-center">Your users</h2>
+            <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>User ID</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Orders</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {% for user in users %}
+                      <tr>
+                          <td><a href="#!">{{ user.id }}</a></td>
+                          <td>{{ user.name }}</td>
+                          <td>{{ user.email }}</td>
+                          <td>{{ user.orders }}</td>
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section class="user-dashboard page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+              <div class="dashboard-wrapper user-dashboard">
+					<div class="total-order mt-20">
+						<h4>Your Orders</h4>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Order ID</th>
+										<th>User</th>
+										<th>Items</th>
+										<th>Address</th>
+										<th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+                                {% for order in orders %}
+									<tr>
+										<td><a href="#!">{{ order.id }}</a></td>
+										<td>{{ order.user_id }}</td>
+										<td>{{ order.order_items }}</td>
+										<td>{{ order.address }}</td>
+										<td>{{ order.pickup_date }}</td>
+                                        <td>{{ order.status }}</td>
+                                        <td>${{ order.total }}</td>
+									</tr>
+                                {% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+              </div>
+			</div>
+		</div>
+	</div>
+</section>
+  </section>
+  <section class="user-dashboard page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+              <div class="dashboard-wrapper user-dashboard">
+					<div class="total-order mt-20">
+						<h4>Order Items</h4>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Item ID</th>
+										<th>Order ID</th>
+										<th>Item #</th>
+										<th>Product ID</th>
+                                        <th>Quantity</th>
+                                        <th>Text</th>
+                                        <th>Text Color</th>
+                                        <th>Balloons Color</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+                                {% for item in items %}
+									<tr>
+										<td><a href="#!">{{ item.id }}</a></td>
+										<td>{{ item.order_id }}</td>
+										<td>{{ item.item_num }}</td>
+										<td>{{ item.product_id }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>{{ item.text }}</td>
+                                        <td>{{ item.text_color }}</td>
+                                        <td>{{ item.balloons_color }}</td>
+									</tr>
+                                {% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+              </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% include "footer-simple.html" %}

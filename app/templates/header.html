@@ -1,0 +1,237 @@
+<!--
+THEME: Aviato | E-commerce template
+VERSION: 1.0.0
+AUTHOR: Themefisher
+
+HOMEPAGE: https://themefisher.com/products/aviato-e-commerce-template/
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>Tina's Gift Shop</title>
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Gift shop">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Carolina Lascano">
+  <meta name="generator" content="Themefisher Constra HTML Template v1.0">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png') }}" />
+
+  <!-- Themefisher Icon font -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/themefisher-font/style.css') }}">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/css/bootstrap.min.css') }}">
+
+  <!-- Animate css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/animate/animate.css') }}">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/slick/slick.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/slick/slick-theme.css') }}">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+	<!-- FonrAwesome Icons-->
+  <script src="https://kit.fontawesome.com/7f9b508b4c.js" crossorigin="anonymous"></script>
+</head>
+
+<body id="body">
+
+<!-- Start Top Header Bar -->
+<section class="top-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<div class="contact-number">
+					<i class="fa-solid fa-bag-shopping"></i>
+					{% if current_user.is_authenticated: %}
+					<span>Welcome back {{ current_user.name }}!</span>
+					{% else %}
+					<span>Find the perfect gift!</span>
+					{% endif %}
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<!-- Site Logo -->
+				<div class="logo text-center">
+					<a href="{{ url_for('home') }}">
+						<!-- logo -->
+							<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="40"
+								font-family="AustinBold, Austin" font-weight="bold">
+								<g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
+									<img src="{{ url_for('static', filename='images/tinas_logo.png') }}" alt="Logo" height=100">
+								</g>
+							</g>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<!-- Cart -->
+				<ul class="top-menu text-right list-inline">
+					<li class="dropdown cart-nav dropdown-slide">
+						<a href="{{ url_for('cart') }}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
+								class="tf-ion-android-cart"></i>Cart</a>
+						<div class="dropdown-menu cart-dropdown">
+
+							{% if not order %}
+
+							<div class="media-body">
+								<h4 class="media-heading text-center">Your cart is empty!</h4>
+							</div>
+
+							{% else %}
+
+								{% for order_item in order %}
+								<!-- Cart Item -->
+								<div class="media">
+									<a class="pull-left" href="{{ url_for('single_product', p_id=order_item['product_id']) }}">
+										<img class="media-object" src="{{ url_for('static', filename='images/shop/products/'+order_item['image_name']) }}" alt="image" />
+									</a>
+									<div class="media-body">
+										<h4 class="media-heading">{{ order_item["product_name"] }}</h4>
+										<div class="cart-price">
+											<span>{{ order_item["quantity"] }} x</span>
+											<span>${{ order_item["price"] }}</span>
+										</div>
+									</div>
+									<a href="{{ url_for('remove_item', item=order.index(order_item)) }}" class="remove"><i class="tf-ion-close"></i></a>
+								</div><!-- / Cart Item -->
+
+								{% endfor %}
+
+							<div class="cart-summary">
+								<span>Total</span>
+								<span class="total-price">${{ total }}</span>
+							</div>
+							<ul class="text-center cart-buttons">
+								<li><a href="{{ url_for('cart') }}" class="btn btn-small">View Cart</a></li>
+								<li><a href="{{ url_for('checkout') }}" class="btn btn-small btn-solid-border">Checkout</a></li>
+							</ul>
+
+							{% endif %}
+
+						</div>
+
+					</li>
+					<!-- / Cart -->
+					{% if current_user.is_authenticated: %}
+					<li><a href="{{ url_for('logout') }}">Log out </a></li>
+					{% else %}
+					<li><a href="{{ url_for('login') }}">Log in </a></li>
+					<li><a href="{{ url_for('signup') }}">Sign up</a></li>
+					{% endif %}
+
+				</ul><!-- / .nav .navbar-nav .navbar-right -->
+			</div>
+		</div>
+	</div>
+</section><!-- End Top Header Bar -->
+
+
+<!-- Main Menu Section -->
+<section class="menu">
+	<nav class="navbar navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<h2 class="menu-title">Main Menu</h2>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+			</div><!-- / .navbar-header -->
+
+			<!-- Navbar Links -->
+			<div id="navbar" class="navbar-collapse collapse text-center">
+				<ul class="nav navbar-nav">
+
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="{{ url_for('home') }}">Home</a>
+					</li><!-- / Home -->
+
+					<!-- Elements -->
+					<li class="dropdown dropdown-slide">
+						<a href="{{ url_for('shop', category='balloons') }}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+							role="button" aria-haspopup="true" aria-expanded="false">Shop <span
+								class="tf-ion-ios-arrow-down"></span></a>
+						<div class="dropdown-menu">
+							<div class="row">
+
+								<!-- Basic -->
+
+									<ul>
+										<li class="dropdown-header">Gifts</li>
+										<li role="separator" class="divider"></li>
+										<li><a href="{{ url_for('shop', category='balloons') }}">Balloons</a></li>
+										<li><a href="{{ url_for('shop', category='signs') }}">Signs</a></li>
+										<li><a href="{{ url_for('shop', category='cake_toppers') }}">Cake Toppers</a></li>
+										<li><a href="{{ url_for('shop', category='mugs_glasses') }}">Mugs and Glasses</a></li>
+
+									</ul>
+
+						</div><!-- / .dropdown-menu -->
+					</li>
+					<!-- / Elements -->
+
+					<!-- Pages -->
+					<li class="dropdown dropdown-slide">
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+							role="button" aria-haspopup="true" aria-expanded="false">User <span
+								class="tf-ion-ios-arrow-down"></span></a>
+						<div class="dropdown-menu">
+							<div class="row">
+
+							{% if current_user.is_authenticated: %}
+									<ul>
+										<li><a href="{{ url_for('prof_details') }}">Dashboard</a></li>
+										<li><a href="{{ url_for('prof_details') }}">Orders</a></li>
+										<li><a href="{{ url_for('prof_details') }}">Address</a></li>
+										<li><a href="{{ url_for('prof_details') }}">Profile Details</a></li>
+									</ul>
+							{% else %}
+								<!-- Utility -->
+									<ul>
+										<li class="dropdown-header">Account</li>
+										<li role="separator" class="divider"></li>
+										<li><a href="{{ url_for('login') }}">Log in </a></li>
+										<li><a href="{{ url_for('signup') }}">Sign up</a></li>
+									</ul>
+							{% endif %}
+								<!-- Mega Menu -->
+
+							</div><!-- / .row -->
+						</div><!-- / .dropdown-menu -->
+					</li><!-- / Pages -->
+
+
+					<!-- About Us -->
+					<li class="dropdown">
+						<a href="{{ url_for('about') }}">About Us</a>
+					</li><!-- / About Us -->
+
+					<!-- Contact Us -->
+					<li class="dropdown">
+						<a href="{{ url_for('contact') }}">Contact Us</a>
+					</li><!-- / Contact Us -->
+
+
+				</ul><!-- / .nav .navbar-nav -->
+
+			</div>
+			<!--/.navbar-collapse -->
+		</div><!-- / .container -->
+	</nav>
+</section>

@@ -1,0 +1,102 @@
+{% include "header-simple.html" %}
+
+<body id="body">
+
+<section class="signin-page account">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="block text-center">
+          <a class="logo" href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/tinas_logo.png') }}" alt="Logo" height=100">
+          </a>
+          <h2 class="text-center">Create Product</h2>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  {% for message in messages: %}
+                    <div class="alert alert-info alert-common" role="alert">
+                      <i class="tf-ion-android-checkbox-outline"></i>
+                    {{ message }}
+                    </div>
+                  {% endfor %}
+              {% endif %}
+            {% endwith %}
+          <form name="form" class="text-left clearfix" action="{{ url_for('create_product') }}" method="post">
+            <div class="form-group">
+              <input name="name" type="text" class="form-control"  placeholder="Product Name">
+            </div>
+            <div class="form-group">
+              <input type="radio" id="balloons" name="category" value="balloons">
+              <label for="balloons">Balloons</label><br>
+              <input type="radio" id="signs" name="category" value="signs">
+              <label for="signs">Signs</label><br>
+              <input type="radio" id="cake_toppers" name="category" value="cake_toppers">
+              <label for="cake_toppers">Cake Toppers</label><br>
+              <input type="radio" id="mugs_glasses" name="category" value="mugs_glasses">
+              <label for="mugs_glasses">Mugs and Glasses</label><br>
+            </div>
+            <div class="form-group">
+              <input name="price" type="number" class="form-control"  placeholder="Price">
+            </div>
+            <div class="form-group">
+              <input name="image_name" type="text" class="form-control"  placeholder="Image Name">
+            </div>
+            <div class="form-group">
+              <input name="description" type="text" class="form-control"  placeholder="Description">
+            </div>
+            <div class="form-group">
+              <input name="stock" type="number" class="form-control"  placeholder="Stock">
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-main text-center">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section class="user-dashboard page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+              <div class="dashboard-wrapper user-dashboard">
+					<div class="total-order mt-20">
+						<h4>Products</h4>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Product ID</th>
+										<th>Name</th>
+										<th>Category</th>
+										<th>Price</th>
+                                        <th>Image name</th>
+                                        <th>Stock</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+                                {% for product in products %}
+									<tr>
+										<td><a href="#!">{{ product.id }}</a></td>
+										<td>{{ product.name }}</td>
+										<td>{{ product.category }}</td>
+										<td>${{ product.price }}</td>
+                                        <td>{{ product.image_name }}</td>
+                                        <td>{{ product.stock }}</td>
+									</tr>
+                                {% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+              </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% include "footer-simple.html" %}

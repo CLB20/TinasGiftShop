@@ -1,0 +1,28 @@
+{% include "header.html" %}
+{% include "header-dashboard.html" %}
+
+
+				  <li><a href="{{ url_for('prof_details') }}">Dashboard</a></li>
+				  <li><a href="{{ url_for('prof_details') }}">Orders</a></li>
+				  <li><a href="{{ url_for('prof_details') }}">Address</a></li>
+				  <li><a class="active" href="{{ url_for('prof_details') }}">Profile Details</a></li>
+				</ul>
+        <div class="dashboard-wrapper dashboard-user-profile">
+          <div class="media">
+            <div class="pull-left text-center" href="#!">
+              <img class="media-object user-img" src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="Image">
+            </div>
+            <div class="media-body">
+              <ul class="user-profile-list">
+                <li><span>Full Name:</span>{{ current_user.name }}</li>
+                <li><span>Email:</span>{{ current_user.email }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "footer.html" %}

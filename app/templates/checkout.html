@@ -1,0 +1,125 @@
+
+{% include "header.html" %}
+
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Checkout</h1>
+					<ol class="breadcrumb">
+						<li><a href="{{ url_for('home') }}">Home</a></li>
+						<li class="active">checkout</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="page-wrapper">
+   <div class="checkout shopping">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8">
+               <div class="block billing-details">
+                  <h4 class="widget-title">Billing Details</h4>
+                  <form name=form class="checkout-form" action="{{ url_for('create_checkout_session') }}" method="post">
+                     <div class="form-group">
+                        <label for="full_name">Full Name</label>
+                        <input name="name" type="text" class="form-control" id="full_name" placeholder="" value="{{  current_user.name  }}" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="" value="{{  current_user.email  }}" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="user_address">Address</label>
+                        <input name="address" type="text" class="form-control" id="user_address" placeholder="" required>
+                     </div>
+                     <div class="checkout-country-code clearfix">
+                        <div class="form-group">
+                           <label for="user_post_code">Postal Code</label>
+                           <input name="postal_code" type="text" class="form-control" id="user_post_code" value="" required>
+                        </div>
+                        <div class="form-group" >
+                           <label for="user_city">City</label>
+                           <input name="city" type="text" class="form-control" id="user_city" value="" required>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="user_country">Country</label>
+                        <input type="text" class="form-control" id="user_country" placeholder="Canada" disabled>
+                     </div>
+                     <div class="block">
+                        <h4 class="widget-title">Payment</h4>
+                        <p>Proceed to Secure Payment</p>
+                        <div class="checkout-product-details">
+                           <div class="payment">
+                              <div class="card-details">
+                                 <button type="submit" id="checkout-button" class="btn btn-main mt-20">Pay Now</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+
+            </div>
+            <div class="col-md-4">
+               <div class="product-checkout-details">
+                  <div class="block">
+                     <h4 class="widget-title">Order Summary</h4>
+                     {% for order_item in order %}
+                     <div class="media product-card">
+                        <a class="pull-left" href="!#">
+                           <img class="media-object" src="{{ url_for('static', filename='images/shop/products/'+order_item['image_name']) }}" alt="Image" />
+                        </a>
+                        <div class="media-body">
+                           <h4 class="media-heading"><strong>{{ order_item["product_name"] }}</strong></h4>
+                           <p class="price">{{ order_item["quantity"] }} x ${{ order_item["price"] }}</p>
+                           <p >Text color: {{ order_item["text_color"] }}.</p>
+                           <p >Text: {{ order_item["text"] }}</p>
+                        </div>
+                     </div>
+                     {% endfor %}
+                     <ul class="summary-prices">
+                        <li>
+                           <span>Subtotal:</span>
+                           <span class="price">${{ total }}.00</span>
+                        </li>
+                        <li>
+                           <span>Shipping:</span>
+                           <span>Free</span>
+                        </li>
+                     </ul>
+                     <div class="summary-total">
+                        <span>Total</span>
+                        <span>${{ total }}.00</span>
+                     </div>
+                     <div class="verified-icon">
+                        <img src="{{ url_for('static', filename='images/shop/verified.png') }}">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+   <!-- Modal -->
+   <div class="modal fade" id="coupon-modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-body">
+               <form>
+                  <div class="form-group">
+                     <input class="form-control" type="text" placeholder="Enter Coupon Code">
+                  </div>
+                  <button type="submit" class="btn btn-main">Apply Coupon</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+{% include "footer.html" %}

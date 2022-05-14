@@ -1,0 +1,72 @@
+{% include "header.html" %}
+
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Cart</h1>
+					<ol class="breadcrumb">
+						<li><a href="{{ url_for('home') }}">Home</a></li>
+						<li class="active">cart</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<div class="page-wrapper">
+  <div class="cart shopping">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block">
+            <div class="product-list">
+              <form method="post">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="">Item Name</th>
+                      <th class="">Item Price</th>
+                      <th class="">Quantity</th>
+                      <th class="">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for order_item in order %}
+                    <tr class="">
+                      <td class="">
+                        <div class="product-info">
+                          <img width="80" src="{{ url_for('static', filename='images/shop/products/'+order_item['image_name']) }}" alt="Product image" />
+                          <a href="{{ url_for('single_product', p_id=order_item['product_id']) }}">{{ order_item["product_name"] }}</a>
+                        </div>
+                      </td>
+                      <td class="">${{ order_item["price"] }}</td>
+                      <td class="">{{ order_item["quantity"] }}</td>
+                      <td class="">
+                        <a class="product-remove" href="{{ url_for('remove_item', item=order.index(order_item)) }}">Remove</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                  {% if not order %}
+                <a href="{{ url_for('shop', category='balloons') }}" class="btn pull-left">Your cart is empty! Add some items.</a>
+                  {% else %}
+                <a href="{{ url_for('shop', category='signs') }}" class="btn pull-left">Add more items</a>
+                <a href="{{ url_for('checkout') }}" class="btn btn-main pull-right">Checkout</a>
+                  {% endif %}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% include "footer.html" %}

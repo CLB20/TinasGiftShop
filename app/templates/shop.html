@@ -1,0 +1,85 @@
+{% include "header.html" %}
+
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Shop</h1>
+					<ol class="breadcrumb">
+						<li><a href="{{ url_for('home') }}">Home</a></li>
+						<li class="active">shop</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="products section">
+	<div class="container">
+		<div class="row">
+			{% for product in products %}
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="{{ url_for('static', filename='images/shop/products/'+product.image_name) }}" alt="product-img" height="200"/>
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span  data-toggle="modal" data-target="#product-modal{{ product.id }}">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href="{{ url_for('single_product', p_id=product.id) }}"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+                      	</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="product-single.html">{{ product.name }}</a></h4>
+						<p class="price">${{ product.price }}</p>
+					</div>
+				</div>
+			</div>
+
+					<!-- Modal -->
+		<div class="modal product-modal fade" id="product-modal{{ product.id }}">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<i class="tf-ion-close"></i>
+			</button>
+		  	<div class="modal-dialog " role="document">
+		    	<div class="modal-content">
+			      	<div class="modal-body">
+			        	<div class="row">
+			        		<div class="col-md-8 col-sm-6 col-xs-12">
+			        			<div class="modal-image">
+				        			<img class="img-responsive" src="{{ url_for('static', filename='images/shop/products/'+product.image_name) }}" alt="product-img" />
+			        			</div>
+			        		</div>
+			        		<div class="col-md-4 col-sm-6 col-xs-12">
+			        			<div class="product-short-details">
+			        				<h2 class="product-title">{{ product.name }}</h2>
+			        				<p class="product-price">${{ product.price }}</p>
+			        				<p class="product-short-description">
+			        					{{ product.description }}
+			        				</p>
+			        				<a href="{{ url_for('single_product', p_id=product.id) }}" class="btn btn-main">Add To Cart</a>
+			        			</div>
+			        		</div>
+			        	</div>
+			        </div>
+		    	</div>
+		  	</div>
+		</div><!-- /.modal -->
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+
+
+
+{% include "footer.html" %}

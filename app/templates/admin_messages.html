@@ -1,0 +1,50 @@
+{% include "header-simple.html" %}
+
+<body id="body">
+
+<section class="signin-page account">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <a class="logo" href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/tinas_logo.png') }}" alt="Logo" height=100">
+          </a>
+          <h2 class="text-center">Your messages</h2>
+            <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Email</th>
+						  <th>Date</th>
+                          <th>Subject</th>
+						  <th>Message</th>
+						  <th>Read</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {% for m in messages %}
+                      <tr>
+                          <td><a href="#!">{{ m.id }}</a></td>
+                          <td>{{ m.name }}</td>
+                          <td>{{ m.email }}</td>
+						  <td>{{ m.date }}</td>
+						  <td>{{ m.subject }}</td>
+                          <td>{{ m.message }}</td>
+						  <td><button class="btn"><a href="{{ url_for('delete_message', id=m.id) }}">Delete</a></button></td>
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+{% include "footer-simple.html" %}
