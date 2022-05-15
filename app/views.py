@@ -10,7 +10,10 @@ from app.db import db, Product, Order_item, Order, Message
 @app.route("/")
 def home():
     all_products = Product.query.all()
-    sample_products = random.sample(all_products, 3)
+    try:
+        sample_products = random.sample(all_products, 3)
+    except ValueError:
+        sample_products = None
     if "temp_order" not in session:
         temporary_order = None
         total = 0
